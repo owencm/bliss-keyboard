@@ -1,0 +1,325 @@
+<!DOCTYPE>
+<html>
+<head>
+	<style>
+		.symbol {
+			padding: 50px;
+			margin-bottom: -50px;
+		}
+		#sentence .symbol {
+			padding: 50px 3px;
+		}
+		#sentence {
+			min-height: 185px;
+		}
+	</style>
+</head>
+<body>
+	<div id='sentenceContainer' style='border:1px solid black'>
+		<div id='backspace' style='float:right'>
+			Backspace
+		</div>
+		<div id='sentence'></div>
+	</div>
+	<div id='keyboard'>
+
+	</div>
+	<script type='text/javascript'>
+		var home = ['punctuation_space.png','line,stripe.png','minus,no,without.png','pen,pencil.png','proposed_destruction.png','mouth.png','future.png','past.png','container,bowl,holder,pouch.png','mind,intellect,reason.png','dot.png','feeling,emotion,sensation.png','question_mark.png','one_(digit).png'];
+		var sub = [];
+		sub['line,stripe.png'] = ['line,stripe.png','person,human_being,individual,human.png','man,male.png', 'woman,female.png', 'up,upward.png', 'down,downward.png','and,also,plus,too.png', 'enclosure.png','hand.png','cause.png','exclamation_mark.png','bone.png','across.png','musical_note.png','adult,grownup.png','child,kid,youngster.png','before,in_front_of,prior_to.png','after,behind.png','palm.png','angel_(1).png','arm.png','opening.png','room.png','cloth,fabric,material,textile,net.png','barrier_(contraceptive).png','bed.png','baby,infant.png','star.png','door.png','flower.png','bottle,flask.png','tree.png','bush,shrub.png','that_(conj).png','but,except.png','chair,seat.png','end,arrival,stop.png','beginning,start.png','cross,Christianity_(in_combinations).png','decision.png','feeling,emotion,sensation.png','dreidel_top.png','ease,easiness,simplicity.png','effect,result.png','electromagnetic_radiation.png','limit(s),limitation.png','fight,combat.png','digits_(computer).png','boat,ship.png','flag.png','flute,recorder.png','to,toward,towards.png','from.png','funnel.png','health.png','horizontal-(a).png','illness,disease,sickness_(sick_person).png','injection,inoculation,shot.png','it.png','medicine,medical_practice.png','left.png','right.png','kneeling_(kneeling_person).png','length,longness.png','littleness,smallness.png','month.png','nail.png','needle.png','opposite_meaning,opposite_of,opposite.png','permission,allowance.png','reclining,lying_(person_lying_down).png','relay.png','shine.png','space.png','sport.png','stairs,steps.png','standing_(standing_person).png','strength.png','string.png','wand.png'];
+		sub['minus,no,without.png'] = ['minus,no,without.png','earth,ground,land.png','sky.png','enclosure.png','across.png','person,human_being,individual,human.png','adult,grownup.png','child,kid,youngster.png','forward.png','backward,back.png','air,atmosphere.png','stave,staff.png','angle.png','animal,beast.png','anywhere,anyplace,someplace,somewhere.png','arm.png','badge.png','opening.png','room.png','cloth,fabric,material,textile,net.png','beach,bank,coast,shore.png','bed.png','creation,nature.png','baby,infant.png','world.png','door.png','board.png','bread,loaf_of_bread,loaf.png','body,trunk.png','break,fracture.png','that_(conj).png','but,except.png','part,bit,piece,portion,part_of.png','cloud.png','comparative_more.png','proposed_most,maximum.png','cross,Christianity_(in_combinations).png','day.png','dish,plate,platter.png','food.png','evening.png','field.png','filling,fill,fullness.png','fog.png','legs_and_feet.png','garden.png','gun,firearm.png','health.png','hook,hanger.png','horizontal-(a).png','injection,inoculation,shot.png','lawn,meadow.png','left.png','kneeling_(kneeling_person).png','length,longness.png','littleness,smallness.png','morning_(early).png','nail.png','need_(needy_person).png','night.png','nowhere,no_place.png','number.png','on.png','over,above,superior.png','under,below,inferior.png','and,also,plus,too.png','pointer.png','reclining,lying_(person_lying_down).png','rest,comfort.png','root(s).png','space.png','sport_stick.png','stairs,steps.png','standing_(standing_person).png','chair,seat.png'];
+		sub['pen,pencil.png'] = ['pen,pencil.png','hand.png','a,an,any.png','cause.png','about,concerning,in_relation_to,of,on.png','multiplication.png','evaluation,value.png','action,act,deed.png','creation,nature.png','name,label,term,title.png','break,fracture.png','blissymbol.png','hammer,gavel,mallet.png','knife,sword.png','dish,plate,platter.png','downward_and_forward.png','earth,globe,world.png','electromagnetic_radiation.png','funnel.png','kite.png','kneeling_(kneeling_person).png','male_genitals_(man_with_penis).png','opposite_meaning,opposite_of,opposite.png','pointer.png','pyramid.png','quills,spines.png','sport_stick.png','effect,result.png','valley.png','less_than_(relation).png'];
+		sub['proposed_destruction.png'] = ['proposed_destruction.png','action,act,deed.png','evaluation,value.png','creation,nature.png','cause.png','about,concerning,in_relation_to,of,on.png','air,atmosphere.png','angle.png','ascending_and_descending.png','bed.png','cannon,gun.png','chemical_product.png','hammer,gavel,mallet.png','knife,sword.png','death.png','different,other,difference.png','dish,plate,platter.png','downward_and_backward.png','dryness,drought.png','erection,erect_penis.png','fork.png','funnel.png','help,aid,assistance,support.png','kite.png','less_than_(relation).png','electricity.png','need_(needy_person).png','number.png','opposite_meaning,opposite_of,opposite.png','paddle,oar.png','percent,percentage.png','pot,pan.png','pyramid.png','ramp.png','saw.png','seesaw,teeter-totter,teeter_board.png','shine.png','snail.png','space.png','spoon.png','effect,result.png','multiplication.png','this.png','that_(there).png','the.png','waste,garbage,rubbish,trash.png'];
+		sub['mouth.png'] = ['mouth.png','life.png','time.png','wheel.png','musical_note.png','child,kid,youngster.png','adult,grownup.png','baby_girl.png','girl.png','balloon.png','baby,infant.png','boy,lad.png','name,label,term,title.png','bottle,flask.png','bulb_(plant).png','money,cash.png','eye.png','bean.png','balloon_(hot_air).png','bear\'s_head.png','day.png','food.png','sun.png','berry.png','combination,connection.png','year.png','chain.png','coarse_slang.png','conception,fertilization,fertilized_egg.png','cylinder,can.png','earmuffs_(general).png','earth,globe,world.png','east.png','energy.png','digits_(computer).png','flower.png','fruit.png','galaxy.png','gas.png','generalization.png','goal.png','head.png','kiss.png','kitchen_tool,utensils.png','language.png','lip(s).png','machine,appliance,engine,motor.png','needle.png','nonsense.png','north.png','nucleus.png','opinion.png','percent,percentage.png','pipe,hose,tube_(1).png','planet.png','ring.png','rotation,circulation,orbit,lap,circle,round.png','secret.png','slang.png','south.png','spider.png','spoon.png','taste.png','ball.png'];
+		sub['future.png'] = ['future.png','then,so,later.png','bean.png','board.png','bread,loaf_of_bread,loaf.png','body,trunk.png','leaf.png','butterfly,moth.png','wing(s).png','tree.png','crab,shellfish_(with_claws).png','curtain(s),drape(s).png','expectation,anticipation.png','fire.png','fruit.png','grass.png','hair.png','iron,smoothing_iron.png','kidney.png','present.png','plant.png','pliers.png','pod.png','receiver,dish.png','root(s).png'];
+		sub['past.png'] = ['past.png','ago,then_(past).png','around.png','balloon.png','bean.png','berry.png','board.png','bread,loaf_of_bread,loaf.png','body,trunk.png','leaf.png','butterfly,moth.png','comet.png','wing(s).png','tree.png','crab,shellfish_(with_claws).png','cup.png','curtain(s),drape(s).png','ear.png','evening.png','fire.png','kidney.png','kite.png','month.png','moon.png','mug,cup.png','needle.png','present.png','pliers.png','pod.png','root(s).png','rotation,circulation,orbit,lap,circle,round.png','signal,broadcast,transmitting.png','sled,sledge,sleigh,toboggan.png','stone_age.png'];
+		sub['container,bowl,holder,pouch.png'] = ['container,bowl,holder,pouch.png','giving,gift.png','account.png','apple.png','badge.png','sperm.png','bath,washing.png','water,fluid,liquid.png','brush.png','business,commerce,trade.png','cone.png','crab,shellfish_(with_claws).png','emptying,voidance,evacuation.png','filling,fill,fullness.png','fish_(animal).png','goods,contents.png','gun,firearm.png','hole.png','in,inside,interior,internal.png','key.png','mixture.png','oval_shape.png','portability.png','potty,chamber_pot,bedpan.png','receiving.png','rotation,circulation,orbit,lap,circle,round.png','rugby_ball.png','sack,bag.png','sieve,colander,strainer.png','snake.png','change,alteration.png','swing,swinging.png','tree.png','bush,shrub.png'];
+		sub['mind,intellect,reason.png'] = ['mind,intellect,reason.png','knowledge,class_(in_combinations).png','opinion.png','conscience.png','baggage,bag,luggage,suitcase.png','sperm.png','water,fluid,liquid.png','beetle.png','belief_(supernatural).png','brain_signal.png','bridge,overpass.png','causality.png','crab,shellfish_(with_claws).png','decision.png','digital_processing,artificial_intelligence,AI.png','doubt,uncertainty.png','ear.png','earmuffs_(general).png','emptying,voidance,evacuation.png','fan.png','fish_(animal).png','folder.png','glasses,eyeglasses.png','handbag.png','idea,thought.png','information.png','interest.png','importance,significance.png','iron,smoothing_iron.png','jellyfish.png','judgement,law_(in_combinations).png','jump.png','jump_(backward).png','leadership,guidance.png','mixture.png','morning_(early).png','must_(a).png','oval_shape.png','palm.png','permission,allowance.png','view_of_life.png','plan,design,method,system.png','pudding,cream.png','rugby_ball.png','science,body_of_learning.png','snail.png','snake.png','spider.png','strength.png','wish,desire.png'];
+		sub['dot.png'] = ['dot.png','again.png','exclamation_mark.png','bone.png','part,bit,piece,portion,part_of.png','condensation.png','either.png','flute,recorder.png','in,inside,interior,internal.png','indoor_(character).png','eye.png','lump(s).png','memory.png','mine.png','navel.png','or.png','organ,inner_organ,inner_body_part.png','over,above,superior.png','period,point,full_stop,decimal_point.png','comma.png','powder,dust.png','seed.png','spray,vaporization.png','structure,construction.png','substance.png','this.png','that_(there).png','colon.png','who,that,which-(relative).png'];
+		sub['multiplication.png'] = ['multiplication.png','group_of,much_of,many_of,quantity_of.png','generalization.png','wheel.png','all,every,everything,total,whole.png','comparative_more.png','proposed_most,maximum.png','fight,combat.png','helicopter.png','meaning,sense,significance.png','pliers.png','propeller,rotor_(blades).png','star.png'];
+		sub['musical_note.png'] = ['musical_note.png','musical_instrument_(in_combinations).png','scissors.png'];
+		sub['person,human_being,individual,human.png'] = ['person,human_being,individual,human.png','head.png','face.png','alcoholic_drink,alcoholic_beverage,liquor.png','bigness,largeness.png','country,state.png','countryside,country.png','family_(cohabiting).png','help,aid,assistance,support.png','leader,director,guide_(1).png','make-believe_person,imaginary_person.png','menorah.png','metaphor.png','need_(needy_person).png','parent.png','perpendicular.png','personality.png','relative,relation.png','single_parent.png','spouse,cohabitant.png'];
+		sub['enclosure.png'] = ['enclosure.png','thing,object.png','all,every,everything,total,whole.png','in,inside,interior,internal.png','answer,reply.png','baggage,bag,luggage,suitcase.png','bar,cake.png','barred_window.png','grid,matrix.png','block,brick.png','book.png','card.png','chest_of_drawers,bureau,dresser.png','coffin.png','digital_device.png','flag.png','freighter.png','into.png','ladder.png','letter,mail,post.png','parcel,package.png','metal_bar.png','microwave_oven.png','middle,centre.png','musical_instrument_(in_combinations).png','oppression,captivity,slavery.png','out_of_(backward).png','out_of_(upward).png','out_of,exit_(downward).png','out_of,exit_(forward).png','paper,card,page.png','postcard.png','pressure.png','rolling_pin.png','secret.png','side_(enclosure).png','bottom,base.png','sleep.png','stove,furnace,heater,oven.png','oppression,captivity,slavery.png','window.png','cloth,fabric,material,textile,net.png'];
+		sub['about,concerning,in_relation_to,of,on.png'] = ['about,concerning,in_relation_to,of,on.png','for_(the_purpose_of),in_order_to.png','forward.png','although.png','ankle.png','arrow_(bent).png','back_(body).png','east.png','effect,result.png','either.png','from.png','greater_than_(relation).png','purpose.png','arrow_(bent).png','therefore,so,so_that.png','to,toward,towards.png','weakness_(weak_person).png'];
+		sub['forward.png'] = ['forward.png','agreement.png','alternation.png','back_and_forth,backward_and_forward,to_and_fro.png','beginning,start.png','end,arrival,stop.png','bow_and_arrow.png','cart,carriage.png','continuance,continuation.png','decision.png','difficulty.png','dispersion,dissemination,scattering,spread,spreading.png','gathering,assembly,meeting,conference.png','through.png','ease,easiness,simplicity.png','success.png','failure.png','forgetting,amnesia.png','into.png','leadership,guidance.png','love,affection.png','out_of,exit_(forward).png','permission,allowance.png','portability.png','push,pushing.png','race,competition,contest.png','relay.png','river,stream,current.png','wind.png'];
+		sub['action,act,deed.png'] = ['action,act,deed.png','protection,shelter.png','activity,male_gender_(in_combinations).png','animal,beast.png','creation,nature.png','bird.png','boy,lad.png','castle,palace.png','cone.png','legs_and_feet.png','for_(in_exchange_for).png','gender,sex.png','illness,disease,sickness_(sick_person).png','insect,bug.png','lip(s).png','power_(physics).png','protest,resistance.png','son.png','sport.png','work,employment,job.png','therapy.png','view_of_life.png'];
+		sub['backward,back.png'] = ['backward,back.png','back_and_forth,backward_and_forward,to_and_fro.png','gathering,assembly,meeting,conference.png','dispersion,dissemination,scattering,spread,spreading.png','enter_(computer).png','failure.png','out_of_(backward).png'];
+		sub['arm.png'] = ['arm.png','time.png','seat,sitting_(sitting_person).png','wrist.png'];
+		sub['cause.png'] = ['cause.png','therefore,so,so_that.png','bar,cake.png','candy.png','causality.png','effect,result.png','less_than_(relation).png'];
+		sub['opening.png'] = ['opening.png','foundation,base,fundament.png','house,building,dwelling,residence.png','balloon_(hot_air).png','comb.png','knowledge,class_(in_combinations).png','cup.png','fireplace.png','freedom,liberty.png','glass,drinking_glass.png','ladder.png','pool.png','pot,kettle,boiler.png','pot,pan.png','question.png','vase,urn,trophy_cup.png'];
+		sub['cloth,fabric,material,textile,net.png'] = ['cloth,fabric,material,textile,net.png','barred_window.png','clothing,clothes,garment.png'];
+		sub['house,building,dwelling,residence.png'] = ['house,building,dwelling,residence.png','floor,storey,level,etage.png','basement,cellar.png','camper,caravan,mobile_home.png','chimney.png','fence,wall.png','foundation_(building).png','garage.png','indoor_(character).png','row_house,attached_houses.png','semi-detached_house.png','square_(public).png','street.png','yard.png','tower.png','visit.png'];
+		sub['stave,staff.png'] = ['stave,staff.png','soprano.png','alto.png','pitch_(sound).png','bass.png']
+		sub['animal,beast.png'] = ['animal,beast.png','bat_(animal).png','beetle.png','camel.png','cat,feline_(animal),felid.png','dog,canine_(animal),canid.png','dromedary.png','giraffe.png','goat.png','hedgehog.png','horse.png','paw.png','pig.png'];
+		sub['face.png'] = ['face.png','chin.png','beard.png','facial_hair.png','forehead.png','hair_(head).png','neck_(head).png','hippopotamus.png'];
+		sub['head.png'] = ['head.png','face.png'];
+		sub['water,fluid,liquid.png'] = ['water,fluid,liquid.png','beach,bank,coast,shore.png','cloud.png','condensation.png','drink,beverage.png','dryness,drought.png','duck,bird_(water),waterbird,waterfowl,seabird,seafowl.png','environment.png','fjord.png','fog.png','hail.png','hippopotamus.png','humidity.png','ice.png','jellyfish.png','sperm.png','mud,clay.png','oil,lubricant.png','paddle,oar.png','pool.png','rain.png','rice.png','river,stream,current.png','seaweed.png','soup,broth.png','spray,vaporization.png','steam.png','toilet.png','wave.png'];
+		sub['creation,nature.png'] = ['creation,nature.png','making,production,fashioning.png','woman,female.png','belief_(supernatural).png','danger.png','daughter.png','gender,sex.png','girl.png','God.png','judgement,law_(in_combinations).png','offspring,child.png','plan,design,method,system.png','pyramid.png','religion,naturalism.png','science,body_of_learning.png','weight.png','seesaw,teeter-totter,teeter_board.png','star_of_David.png','vagina.png','proposed_unknown_creation.png'];
+		sub['before,in_front_of,prior_to.png'] = ['before,in_front_of,prior_to.png','between.png'];
+		sub['bird.png'] = ['bird.png','bird_of_prey,raptor.png','duck,bird_(water),waterbird,waterfowl,seabird,seafowl.png'];
+		sub['baby,infant.png'] = ['baby,infant.png','fetus.png','birth_(reproduction).png'];
+		sub['star.png'] = ['star.png','birth.png','comet.png','galaxy.png','single_parent_family.png','snow.png','wand.png'];
+		sub['name,label,term,title.png'] = ['name,label,term,title.png','bliss-name.png'];
+		sub['door.png'] = ['door.png','broom.png','couch,chesterfield,sofa.png','curtain(s),drape(s).png','table.png','goal.png','ladder.png','shelf.png','wicket.png'];
+		sub['electricity.png'] = ['electricity.png', 'brain_signal.png','electric_field.png','lightning.png'];
+		sub['down,downward.png'] = ['down,downward.png','bump,press,pressing.png','gravity,gravitation.png','hail.png','idea,thought.png','gathering,assembly,meeting,conference.png','dispersion,dissemination,scattering,spread,spreading.png','out_of,exit_(downward).png','parachute.png','pressure.png','rain.png','receiving.png','sieve,colander,strainer.png'];
+		sub['money,cash.png'] = ['money,cash.png','business,commerce,trade.png','store,shop.png','tax.png'];
+		sub['eye.png'] = ['eye.png','colour.png','eyelid.png','glasses,eyeglasses.png','insight.png','light.png','news.png','observation.png','sleep.png'];
+		sub['life.png'] = ['life.png','proposed_small_life.png','cell.png','event,happening,occasion.png','change,alteration.png','death.png','embryo.png','fact.png','fantasy,phantasy,imagination,illusion.png','make-believe_man.png','make-believe_person,imaginary_person.png','make-believe_woman.png','spirit.png','existence,being_(1).png','state_of_mind.png'];
+		sub['after,behind.png'] = ['after,behind.png','between.png'];
+		sub['wheel.png'] = ['wheel.png','move,movement.png','cart,carriage.png','airplane,aeroplane,plane.png','garage.png','helicopter.png','machine,appliance,engine,motor.png','prone_board,scooter-board.png','car,automobile,motor_vehicle.png','vehicle,carriage,railway_car.png','roller_skates.png','skateboard.png','stander_(wheeled).png','vehicle_(long).png','wheelchair.png'];
+		sub['man,male.png'] = ['man,male.png','citizen.png','couple_(heterosexual).png','family,couple.png','family_(traditional).png','father,dad,daddy,papa,pa,pop.png','husband.png','make-believe_man.png','stepfather.png','stepmother.png'];
+		sub['knife,sword.png'] = ['knife,sword.png','coarse_slang.png','war.png','plough.png'];
+		sub['knowledge,class_(in_combinations).png'] = ['knowledge,class_(in_combinations).png','mystery,unknown.png','forgetting,amnesia.png','memory.png','proposed_indicator_(combine).png'];
+		sub['sperm.png'] = ['sperm.png','barrier_(contraceptive).png','conception,fertilization,fertilized_egg.png'];
+		sub['wing(s).png'] = ['wing(s).png','lettuce,leafy_vegetable.png','airplane,aeroplane,plane.png','salad.png'];
+		sub['woman,female.png'] = ['woman,female.png','couple_(heterosexual).png','family,couple.png','family_(traditional).png','make-believe_woman.png','mother,mom,mommy,mum.png','stepfather.png','stepmother.png'];
+		sub['and,also,plus,too.png'] = ['and,also,plus,too.png','proposed_possessive.png','with.png','holding.png','cross,Christianity_(in_combinations).png','ownership,possession.png','window.png','proposed_additive.png','attachment,appendix,annex.png'];
+		sub['book.png'] = ['book.png','cupboard,closet,wardrobe.png'];
+		sub['exclamation_mark.png'] = ['exclamation_mark.png','proposed_small_exclamation_mark.png','danger.png','interest.png','importance,significance.png'];
+		sub['boat,ship.png'] = ['boat,ship.png','deck.png','hull,body.png','keel.png','rudder.png','sailboat,sailing_boat,yacht.png'];
+		sub['change,alteration.png'] = ['change,alteration.png','development.png','weather.png'];
+		sub['same,equal,equality.png'] = ['same,equal,equality.png','different,other,difference.png','similar,like,alike.png'];
+		sub['digits_(computer).png'] = ['digits_(computer).png','digital_device.png','digital_processing,artificial_intelligence,AI.png','file,data_file_(digital).png','proposed_digital_world.png'];
+		sub['angle.png'] = ['angle.png','discomfort.png','fjord.png','electricity.png','mine.png','mountain.png','sail.png','nose.png','stone,rock.png','air,atmosphere.png','weakness_(weak_person).png'];
+		sub['feeling,emotion,sensation.png'] = ['feeling,emotion,sensation.png','discomfort.png','religion,naturalism.png','spirit.png','slang.png','freedom,liberty.png','love,affection.png','oppression,captivity,slavery.png','peace,peace_of_mind,serenity.png','rest,comfort.png'];
+		sub['up,upward.png'] = ['up,upward.png','giving,gift.png','gathering,assembly,meeting,conference.png','dispersion,dissemination,scattering,spread,spreading.png','gas.png','information.png','out_of_(upward).png','pressure.png','steam.png'];
+		sub['question_mark.png'] = ['question_mark.png','doubt,uncertainty.png','expectation,anticipation.png','must_(a).png','question.png','what,question_mark.png'];
+		sub['chest_of_drawers,bureau,dresser.png'] = ['chest_of_drawers,bureau,dresser.png','drawer.png'];
+		sub['food.png'] = ['food.png','drink,beverage.png','colour.png','spread,paste.png','taste.png','event,happening,occasion.png'];
+		sub['ear.png'] = ['ear.png','ear_mold.png','language.png','news.png','sound.png'];
+		sub['table.png'] = ['table.png','tabletop.png','edge.png','board_(material).png','platform,stage.png'];
+		sub['body,trunk.png'] = ['body,trunk.png','fetus.png','embryo.png','navel.png','neck_(body).png','organ,inner_organ,inner_body_part.png','pita.png','pubic_hair.png','roll,bun.png','shoulder.png','side_(body).png','stomach,abdomen,belly.png','vagina.png'];
+		sub['electromagnetic_radiation.png'] = ['electromagnetic_radiation.png','energy.png','microwave_oven.png','power_(physics).png'];
+		sub['world.png'] = ['world.png','environment.png','insight.png','blissymbol.png','bliss-name.png','peace,peace_of_mind,serenity.png','repetition,copying,duplication,replication.png','parallel.png','same,equal,equality.png','lowness,shortness_(height).png','height,tallness.png','internet_(1).png'];
+		sub['earth,globe,world.png'] = ['earth,globe,world.png','equator.png','Earth_axis.png'];
+		sub['tree.png'] = ['tree.png','park.png','evergreen_tree.png','countryside,country.png'];
+		sub['dispersion,dissemination,scattering,spread,spreading.png'] = ['dispersion,dissemination,scattering,spread,spreading.png','explosion,detonation,blowup.png'];
+		sub['family,couple.png'] = ['family,couple.png','family.png'];
+		sub['evaluation,value.png'] = ['evaluation,value.png','fan.png','for_(in_exchange_for).png','letter,mail,post.png','lip(s).png','alcoholic_drink,alcoholic_beverage,liquor.png','on.png','proposed_small_value.png'];
+		sub['grain,cereal.png'] = ['grain,cereal.png','field.png','rice.png'];
+		sub['field.png'] = ['field.png','farm.png']
+		sub['filling,fill,fullness.png'] = ['filling,fill,fullness.png','boat,ship.png','badge.png','freighter.png','handbag.png','key.png','rugby_ball.png','shovel,spade.png'];
+		sub['badge.png'] = ['badge.png','filling,fill,fullness.png'];
+		sub['fire.png'] = ['fire.png','fireplace.png','medicine,medical_practice.png','screw.png','stove,furnace,heater,oven.png','vase,urn,trophy_cup.png','wish,desire.png'];
+		sub['flag.png'] = ['flag.png','country,state.png'];
+		sub['room.png'] = ['room.png','floor_covering,linoleum.png','floor.png','iron,smoothing_iron.png','public_room.png','shower.png','steam_bath.png'];
+		sub['musical_note.png'] = ['musical_note.png','flute,recorder.png'];
+		sub['card.png'] = ['card.png','folder.png'];
+		sub['legs_and_feet.png'] = ['legs_and_feet.png','foot.png','hip.png','leg.png','heel.png','toe.png','roller_skates.png','ice_skates.png'];
+		sub['limit(s),limitation.png'] = ['limit(s),limitation.png','farness,remoteness,farawayness.png','similar,like,alike.png','infiniteness,boundlessness,limitlessness.png','length,longness.png','parallel.png','limited_time,interval,period,awhile,for_a_while.png','screw.png'];
+		sub['thing,object.png'] = ['thing,object.png','goods,contents.png','hail.png','gravity,gravitation.png','push,pushing.png','front,front_of_a_thing.png','top,top_of_a_thing.png','rear,back_of_a_thing.png','bottom,bottom_of_a_thing.png','shell,crust.png','sled,sledge,sleigh,toboggan.png','solid_thing.png','stamp.png','material,raw_material,stuff.png','ice.png','candy.png','chemical_product.png','cart,carriage.png','flag.png','ear_mold.png','freighter.png','lollipop,sucker.png','metal_bar.png','musical_instrument_(in_combinations).png','block,brick.png','tool,instrument.png'];
+		sub['energy.png'] = ['energy.png','fuel.png'];
+		sub['flower.png'] = ['flower.png','garden.png','metaphor.png','plant.png','stem,stalk.png','child,kid,youngster.png'];
+		sub['grass.png'] = ['grass.png','fruit.png','grain,cereal.png','wing(s).png','lawn,meadow.png','plant.png','seaweed.png'];
+		sub['air,atmosphere.png'] = ['air,atmosphere.png','humidity.png','lightning.png','wind.png'];
+		sub['beach,bank,coast,shore.png'] = ['beach,bank,coast,shore.png','inlet.png','island.png'];
+		sub['bone.png'] = ['bone.png','joint.png','structure,construction.png'];
+		sub['hand.png'] = ['hand.png','kitchen_tool,utensils.png','tool,instrument.png'];
+		sub['kneeling_(kneeling_person).png'] = ['kneeling_(kneeling_person).png','knee.png','ankle.png']
+		sub['leadership,guidance.png'] = ['leadership,guidance.png','leader,director,guide_(1).png','persuasion.png','politics.png','tax.png'];
+		sub['combination,connection.png'] = ['combination,connection.png','marriage.png'];
+		sub['length,longness.png'] = ['length,longness.png','shortness_(distance,length).png','measurement,measure.png'];
+		sub['illness,disease,sickness_(sick_person).png'] = ['illness,disease,sickness_(sick_person).png','mental_illness.png'];
+		sub['morning_(early).png'] = ['morning_(early).png','horizon.png','cap.png','muscle.png','lid.png','pail,bucket.png','parachute.png','rugby_ball.png','strength.png'];
+		sub['daughter.png'] = ['daughter.png','mother,mom,mommy,mum.png'];
+		sub['health.png'] = ['health.png','must_(a).png'];
+		sub['doubt,uncertainty.png'] = ['doubt,uncertainty.png','mystery,unknown.png'];
+		sub['language.png'] = ['language.png','news.png'];
+		sub['moon.png'] = ['moon.png','night.png','banana.png'];
+		sub['meaning,sense,significance.png'] = ['meaning,sense,significance.png','nonsense.png'];
+		sub['nucleus.png'] = ['nucleus.png','nuclear_radiation,radioactivity.png'];
+		sub['opinion.png'] = ['opinion.png','observation.png','politics.png','meaning,sense,significance.png','state_of_mind.png'];
+		sub['less_than_(relation).png'] = ['less_than_(relation).png','against,opposed_to.png','by,by_means_of,of.png','opposition,counter_purpose.png','or.png'];
+		sub['dish,plate,platter.png'] = ['dish,plate,platter.png','pail,bucket.png','pancake,crepe,tortilla.png','pudding,cream.png','salad.png','soup,broth.png'];
+		sub['male_genitals_(man_with_penis).png'] = ['male_genitals_(man_with_penis).png','penis.png'];
+		sub['bed.png'] = ['bed.png','pillow,cushion.png'];
+		sub['nail.png'] = ['nail.png','pin.png','shovel,spade.png','bigness,largeness.png'];
+		sub['mug,cup.png'] = ['mug,cup.png','pitcher,jug,kettle,pot.png'];
+		sub['on.png'] = ['on.png','place,area,location,space.png','spread,paste.png'];
+		sub['making,production,fashioning.png'] = ['making,production,fashioning.png','plan,design,method,system.png'];
+		sub['present.png'] = ['present.png','now.png'];
+		sub['board.png'] = ['board.png','prone_board,scooter-board.png'];
+		sub['protection,shelter.png'] = ['protection,shelter.png','house,building,dwelling,residence.png','birth.png','son.png','daughter.png','family_(cohabiting).png','family,couple.png','family_(traditional).png','farm.png','father,dad,daddy,papa,pa,pop.png','castle,palace.png','husband.png','offspring,child.png','parent.png','marriage.png','relative,relation.png','single_father.png','single_mother.png','single_parent.png','spouse,cohabitant.png','stepfather.png','stepmother.png','tower.png'];
+		sub['against,opposed_to.png'] = ['against,opposed_to.png','protest,resistance.png'];
+		sub['arrow_(bent).png'] = ['arrow_(bent).png','reflection.png'];
+		sub['downward_and_backward.png'] = ['downward_and_backward.png','arrow_(bent).png','shine.png'];
+		sub['God.png'] = ['God.png','religion_(God_based).png'];
+		sub['car,automobile,motor_vehicle.png'] = ['car,automobile,motor_vehicle.png','road_(1).png'];
+		sub['planet.png'] = ['planet.png','satellite.png','South_Pole.png'];
+		sub['drink,beverage.png'] = ['drink,beverage.png','sauce,gravy,relish,dressing.png'];
+		sub['pot,pan.png'] = ['pot,pan.png','saucepan.png'];
+		sub['littleness,smallness.png'] = ['littleness,smallness.png','scale,measurement.png'];
+		sub['nail.png'] = ['nail.png','scale,measurement.png'];
+		sub['rain.png'] = ['rain.png','shower.png','snow.png'];
+		sub['father,dad,daddy,papa,pa,pop.png'] = ['father,dad,daddy,papa,pa,pop.png','single_father.png','woman,female.png'];
+		sub['single_parent.png'] = ['single_parent.png','single_parent_family.png'];
+		sub['sleep.png'] = ['sleep.png','camera.png'];
+		sub['nose.png'] = ['nose.png','smell,odour.png','lightning.png','taste.png'];
+		sub['snow.png'] = ['snow.png','snowflake.png'];
+		sub['rotation,circulation,orbit,lap,circle,round.png'] = ['rotation,circulation,orbit,lap,circle,round.png','somersault_(1).png'];
+		sub['spoon.png'] = ['spoon.png','racquet.png'];
+		sub['steam.png'] = ['steam.png','steam_bath.png'];
+		sub['stairs,steps.png'] = ['stairs,steps.png','step,stair.png'];
+		sub['mountain.png'] = ['mountain.png','stone,rock.png','valley.png'];
+		sub['public_room.png'] = ['public_room.png','store,shop.png'];
+		sub['material,raw_material,stuff.png'] = ['material,raw_material,stuff.png','substance.png'];
+		sub['standing_(standing_person).png'] = ['standing_(standing_person).png','genitals,sex_organs.png','erection,erect_penis.png','male_genitals_(man_with_penis).png','back_(body).png'];
+		sub['religion,naturalism.png'] = ['religion,naturalism.png','belief_(supernatural).png','religion_(God_based).png'];
+		sub['camera.png'] = ['camera.png','projector.png'];
+		sub['light.png'] = ['light.png','camera.png'];
+		sub['height,tallness.png'] = ['height,tallness.png','bigness,largeness.png'];
+		sub['need_(needy_person).png'] = ['need_(needy_person).png','therapy.png'];
+		sub['sport_stick.png'] = ['sport_stick.png','therapy.png'];
+		sub['chair,seat.png'] = ['chair,seat.png','toilet.png','wheelchair.png'];
+		sub['side_(enclosure).png'] = ['side_(enclosure).png','shell,crust.png'];
+		sub['kiss.png'] = ['kiss.png','scissors.png','bow_(knot).png'];
+		sub['goods,contents.png'] = ['goods,contents.png','garbage_can,rubbish_bin,trash_can.png'];
+		sub['glass,drinking_glass.png'] = ['glass,drinking_glass.png','mug,cup.png','tower.png'];
+		sub['alcoholic_drink,alcoholic_beverage,liquor.png'] = ['alcoholic_drink,alcoholic_beverage,liquor.png','goblet,wineglass.png'];
+		sub['sky.png'] = ['sky.png','fantasy,phantasy,imagination,illusion.png', 'world.png'];
+		sub['earth,ground,land.png'] = ['earth,ground,land.png','citizen.png', 'world.png'];
+		sub['reclining,lying_(person_lying_down).png'] = ['reclining,lying_(person_lying_down).png','grave.png','coffin.png'];
+		sub['sail.png'] = ['sail.png','mast.png'];
+		sub['one_(digit).png'] = ['one_(digit).png','two_(digit).png','three_(digit).png'];
+		sub['giving,gift.png'] = ['giving,gift.png','proposed_exchange,substitute,trade.png'];
+		sub['receiving.png'] = ['receiving.png','proposed_exchange,substitute,trade.png'];
+		sub['time.png'] = ['time.png','limited_time,interval,period,awhile,for_a_while.png'];
+		sub['waste,garbage,rubbish,trash.png'] = ['waste,garbage,rubbish,trash.png','garbage_can,rubbish_bin,trash_can.png'];
+		sub['sun.png'] = ['sun.png','light.png','day.png','year.png','planet.png','earth,globe,world.png','ring.png','head.png'];
+		sub['science,body_of_learning.png'] = ['science,body_of_learning.png', 'truth.png'];
+		sub['proposed_unknown_creation.png'] = ['proposed_unknown_creation.png','truth.png'];
+		sub['paper,card,page.png'] = ['paper,card,page.png','book.png'];
+		//Little exclamation, little future and past, little life, little value
+		//Any should be under pen/pencil
+		//Ashore? Armchair? Cheese?
+		//Agreement and cease don't match
+		//Fact isn't good
+		//With subsymbols missing: rocket, rocking chair (rocking), website, wide (?), watch(to), cushion, Danish_(language), democracy, naughty,not_nice, electro_magnet, explorer,enquirer, eyeliner,kohl, find, possible,possibly, correctness, poetry
+		// Must = health + thought, why?
+		//Missing nouns (e.g. deep), an understanding
+		var typeModes = {'HOME': 0, 'SUBSYMBOL': 1, 'CHOOSEINDICATOR': 2};
+		var typeMode;
+		var activeSet;
+		var sentence = [];
+		var updateKeyboard = function (choice, newMode) {
+			typeMode = newMode;
+			// console.log(typeMode);
+			var keyboardNode = document.createElement('div');
+			keyboardNode.id = 'keyboard';
+			if (choice.type == 'set') {
+				activeSet = choice.set;	
+				for (var i=0; i < activeSet.length; i++) {
+					var symbol = activeSet[i];
+					var newElem = document.createElement('img');
+					newElem.setAttribute("class", "symbol");
+					newElem.setAttribute("src", "bliss_h156_transp_png/"+symbol);
+					newElem.onclick = (function () {
+						var copy = symbol;
+						return function () {
+							chooseSymbol(copy, undefined);
+						}
+					})();
+					keyboardNode.appendChild(newElem);
+				}
+			} else if (choice.type == 'symbol') {
+				var indicatorSet = ['', 'indicator_(action).png', 'indicator_(active).png', 'indicator_(adverb).png', 'proposed_indicator_(combine).png', 'indicator_(conditional).png', 'indicator_(continuous_form).png', 'indicator_(definite_form).png', 'indicator_(description_after_fact).png', 'indicator_(description_before_fact).png', 'indicator_(description).png', 'indicator_(diminutive_form).png', 'indicator_(female).png', 'indicator_(first_person).png', 'indicator_(future_action).png', 'indicator_(future_conditional).png', 'indicator_(future_passive_conditional).png', 'indicator_(future_passive).png', 'indicator_(imperative_form).png', 'indicator_(indefinite_form).png', 'indicator_(neutral_form).png', 'indicator_(object_form).png', 'indicator_(passive).png', 'indicator_(past_action).png', 'indicator_(past_conditional).png', 'indicator_(past_participle_1).png', 'indicator_(past_participle_2).png', 'indicator_(past_passive_conditional).png', 'indicator_(past_passive).png', 'indicator_(plural).png', 'indicator_(possessive_form).png', 'indicator_(present_action).png', 'indicator_(present_participle).png', 'indicator_(present_passive_conditional).png', 'indicator_(second_person).png', 'indicator_(thing).png', 'indicator_(things).png', 'indicator_(third_person).png'];
+				for (var i=0; i < indicatorSet.length; i++) {
+					var indicator = indicatorSet[i];
+					var newElem = document.createElement('img');
+					newElem.setAttribute("class", "symbol");
+					newElem.setAttribute("src", "bliss_h156_transp_png/"+choice.symbol);
+					if (indicator != '') {
+						newElem.style['background'] = 'url("bliss_h156_transp_png/'+indicator+'") no-repeat 50% 35px';
+					}
+					newElem.onclick = (function () {
+						var symbolCopy = choice.symbol;
+						var indicatorCopy = indicator;
+						return function () {
+							chooseSymbol(symbolCopy, indicatorCopy);
+						}
+					})();
+					keyboardNode.appendChild(newElem);					
+				}
+			}
+			var oldKeyboardNode = document.querySelector('#keyboard');
+			oldKeyboardNode.parentNode.replaceChild(keyboardNode, oldKeyboardNode);
+		}
+		var redrawSentence = function () {
+			var sentenceNode = document.querySelector('#sentence');
+			sentenceNode.innerHTML = '';
+			for (var i=0; i < sentence.length; i++) {
+				var symbol = sentence[i].symbol;
+				var indicator = sentence[i].indicator;
+				var newElem = document.createElement('img');
+				newElem.setAttribute('class','symbol');
+				newElem.setAttribute('src','bliss_h156_transp_png/'+symbol);
+				if (indicator != '') {
+					newElem.style['background'] = 'url("bliss_h156_transp_png/'+indicator+'") no-repeat 50% 35px';
+				}				
+				sentenceNode.appendChild(newElem);
+			}
+			var newElem = document.createElement('img');
+			newElem.setAttribute('class','symbol');
+			newElem.setAttribute('src','bliss_h156_transp_png/punctuation_carret.png');
+			sentenceNode.appendChild(newElem);
+		}
+		var pushToSentence = function (symbolWithIndicator) {
+			if (symbolWithIndicator.symbol == 'punctuation_space.png') {
+				symbolWithIndicator.symbol = 'punctuation_space_actual.png';
+			}
+			sentence.push(symbolWithIndicator);
+			redrawSentence();
+		}
+		var popFromSentence = function () {
+			if (sentence.length > 0) {
+				sentence.pop();
+			}
+			redrawSentence();
+		}
+		// Indicator is undefined unless typeMode == typeModes.CHOOSEINDICATOR
+		var chooseSymbol = function (symbol, indicator) {
+			// console.log("user chose "+symbol+" "+indicator);
+			// If the user has picked space
+			if (symbol == home[0]) {
+				updateKeyboard({type: 'set', set: home}, typeModes.HOME);
+				pushToSentence({symbol: symbol, indicator: indicator});				
+			} else if (typeMode == typeModes.SUBSYMBOL && (symbol == activeSet[0] || sub[symbol] == undefined)) { // If the user has picked their final symbol but not an indicator
+				updateKeyboard({type: 'symbol', symbol: symbol}, typeModes.CHOOSEINDICATOR);
+			} else if (typeMode == typeModes.CHOOSEINDICATOR) { // If the user has selected an indicator
+				updateKeyboard({type: 'set', set: home}, typeModes.HOME);
+				pushToSentence({symbol: symbol, indicator: indicator});
+			} else { // If the user is refining their choice
+				updateKeyboard({type: 'set', set: sub[symbol]}, typeModes.SUBSYMBOL);
+			}
+		}
+		var exportSentence = function () {
+			var sentenceWithoutFormat = sentence.map(function(indicatorAndSymbol) {
+				return {symbol: (indicatorAndSymbol.symbol || '').replace('.png', ''),
+						indicator: (indicatorAndSymbol.indicator || '').replace('.png', '')};
+			});
+			var i = j = 0;
+			var splitSentence = [{characters: []}];
+			while (i < sentenceWithoutFormat.length) {
+				if (sentenceWithoutFormat[i].symbol == 'punctuation_space_actual') {
+					console.log(splitSentence[j].characters);
+					j++;
+					splitSentence[j] = {characters: []};
+				} else {
+					splitSentence[j].characters.push(sentenceWithoutFormat[i]);
+				}
+				i++;
+			}
+			splitSentence.forEach(function (word) {
+				word.annotation = '';
+			});
+			console.log(JSON.stringify(splitSentence));
+		}
+		var backspaceNode = document.querySelector('#backspace');
+		backspaceNode.onclick = popFromSentence;
+		updateKeyboard({type: 'set', set: home}, typeModes.HOME);
+		redrawSentence();
+	</script>
+</body>
+</html>
