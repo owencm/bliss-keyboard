@@ -85,7 +85,7 @@
 		sub['angle.png'] = ['angle.png','discomfort.png','fjord.png','electricity.png','mine.png','mountain.png','sail.png','nose.png','stone,rock.png','air,atmosphere.png','weakness_(weak_person).png'];
 		sub['feeling,emotion,sensation.png'] = ['feeling,emotion,sensation.png','discomfort.png','religion,naturalism.png','spirit.png','slang.png','freedom,liberty.png','love,affection.png','oppression,captivity,slavery.png','peace,peace_of_mind,serenity.png','rest,comfort.png'];
 		sub['up,upward.png'] = ['up,upward.png','giving,gift.png','gathering,assembly,meeting,conference.png','dispersion,dissemination,scattering,spread,spreading.png','gas.png','information.png','out_of_(upward).png','pressure.png','steam.png'];
-		sub['question_mark.png'] = ['question_mark.png','doubt,uncertainty.png','expectation,anticipation.png','must_(a).png','question.png','what,question_mark.png'];
+		sub['question_mark.png'] = ['question_mark.png','where-(question).png','doubt,uncertainty.png','expectation,anticipation.png','must_(a).png','question.png','what,question_mark.png'];
 		sub['chest_of_drawers,bureau,dresser.png'] = ['chest_of_drawers,bureau,dresser.png','drawer.png'];
 		sub['food.png'] = ['food.png','drink,beverage.png','colour.png','spread,paste.png','taste.png','event,happening,occasion.png'];
 		sub['ear.png'] = ['ear.png','ear_mold.png','language.png','news.png','sound.png'];
@@ -179,7 +179,7 @@
 		sub['glass,drinking_glass.png'] = ['glass,drinking_glass.png','mug,cup.png','tower.png'];
 		sub['alcoholic_drink,alcoholic_beverage,liquor.png'] = ['alcoholic_drink,alcoholic_beverage,liquor.png','goblet,wineglass.png'];
 		sub['sky.png'] = ['sky.png','fantasy,phantasy,imagination,illusion.png', 'world.png'];
-		sub['earth,ground,land.png'] = ['earth,ground,land.png','citizen.png', 'world.png'];
+		sub['earth,ground,land.png'] = ['earth,ground,land.png','where-(question).png','citizen.png', 'world.png'];
 		sub['reclining,lying_(person_lying_down).png'] = ['reclining,lying_(person_lying_down).png','grave.png','coffin.png'];
 		sub['sail.png'] = ['sail.png','mast.png'];
 		sub['one_(digit).png'] = ['one_(digit).png','two_(digit).png','three_(digit).png'];
@@ -209,7 +209,7 @@
 			var keyboardNode = document.createElement('div');
 			keyboardNode.id = 'keyboard';
 			if (choice.type == 'set') {
-				activeSet = choice.set;	
+				activeSet = choice.set;
 				for (var i=0; i < activeSet.length; i++) {
 					var symbol = activeSet[i];
 					var newElem = document.createElement('img');
@@ -240,7 +240,7 @@
 							chooseSymbol(symbolCopy, indicatorCopy);
 						}
 					})();
-					keyboardNode.appendChild(newElem);					
+					keyboardNode.appendChild(newElem);
 				}
 			}
 			var oldKeyboardNode = document.querySelector('#keyboard');
@@ -257,7 +257,7 @@
 				newElem.setAttribute('src','bliss_h156_transp_png/'+symbol);
 				if (indicator != '') {
 					newElem.style['background'] = 'url("bliss_h156_transp_png/'+indicator+'") no-repeat 50% 35px';
-				}				
+				}
 				sentenceNode.appendChild(newElem);
 			}
 			var newElem = document.createElement('img');
@@ -284,7 +284,7 @@
 			// If the user has picked space
 			if (symbol == home[0]) {
 				updateKeyboard({type: 'set', set: home}, typeModes.HOME);
-				pushToSentence({symbol: symbol, indicator: indicator});				
+				pushToSentence({symbol: symbol, indicator: indicator});
 			} else if (typeMode == typeModes.SUBSYMBOL && (symbol == activeSet[0] || sub[symbol] == undefined)) { // If the user has picked their final symbol but not an indicator
 				updateKeyboard({type: 'symbol', symbol: symbol}, typeModes.CHOOSEINDICATOR);
 			} else if (typeMode == typeModes.CHOOSEINDICATOR) { // If the user has selected an indicator
