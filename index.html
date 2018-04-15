@@ -12,17 +12,25 @@
 		#sentence {
 			min-height: 185px;
 		}
+		#keyboard {
+			display: flex
+		}
+		#bliss-keyboard {
+			flex: 1
+		}
 	</style>
 </head>
 <body>
 	<div id='sentenceContainer' style='border:1px solid black'>
-		<div id='backspace' style='float:right'>
-			Backspace
-		</div>
 		<div id='sentence'></div>
 	</div>
 	<div id='keyboard'>
+		<div id='bliss-keyboard'>
 
+		</div>
+		<div id='meta-keyboard'>
+			<img id='backspace' src='backspace.png' style='width: 50px; height: 50px; margin: 40px'></img>
+		</div>
 	</div>
 	<script type='text/javascript'>
 		var home = ['punctuation_space.png','line,stripe.png','minus,no,without.png','pen,pencil.png','proposed_destruction.png','mouth.png','future.png','past.png','container,bowl,holder,pouch.png','mind,intellect,reason.png','dot.png','feeling,emotion,sensation.png','question_mark.png','one_(digit).png'];
@@ -203,11 +211,12 @@
 		var typeMode;
 		var activeSet;
 		var sentence = [];
+		var keyboardId = 'bliss-keyboard';
 		var updateKeyboard = function (choice, newMode) {
 			typeMode = newMode;
 			// console.log(typeMode);
 			var keyboardNode = document.createElement('div');
-			keyboardNode.id = 'keyboard';
+			keyboardNode.id = keyboardId;
 			if (choice.type == 'set') {
 				activeSet = choice.set;
 				for (var i=0; i < activeSet.length; i++) {
@@ -243,7 +252,7 @@
 					keyboardNode.appendChild(newElem);
 				}
 			}
-			var oldKeyboardNode = document.querySelector('#keyboard');
+			var oldKeyboardNode = document.querySelector(`#${keyboardId}`);
 			oldKeyboardNode.parentNode.replaceChild(keyboardNode, oldKeyboardNode);
 		}
 		var redrawSentence = function () {
